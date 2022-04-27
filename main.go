@@ -178,6 +178,7 @@ func main() {
 	db_connection := "user=postgres dbname=chicago_business_intelligence password=root host=/cloudsql/chicago-business-intelligence5:us-central1:mypostgres sslmode=disable port = 5432"
 
 	db, err := sql.Open("postgres", db_connection)
+
 	if err != nil {
 		panic(err)
 	}

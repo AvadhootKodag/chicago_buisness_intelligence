@@ -64,6 +64,7 @@ import (
 	"time"
 
 	"github.com/kelvins/geocoder"
+
 	_ "github.com/lib/pq"
 )
 

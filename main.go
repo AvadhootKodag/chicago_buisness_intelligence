@@ -158,7 +158,7 @@ type BuildingPermitsJsonRecords []struct {
 func main() {
 
 	// Establish connection to Postgres Database
-
+	fmt.Print("Hello")
 	// OPTION 1 - Postgress application running on localhost
 	//db_connection := "user=postgres dbname=chicago_business_intelligence password=root host=localhost sslmode=disable port = 5432"
 
@@ -183,12 +183,6 @@ func main() {
 		panic(err)
 	}
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
-
 	// Test the database connection
 	//err = db.Ping()
 	//if err != nil {
@@ -203,10 +197,15 @@ func main() {
 	for {
 		// build and fine-tune functions to pull data from different data sources
 		// This is a code snippet to show you how to pull data from different data sources//.
-		// GetTaxiTrips(db)
+		GetTaxiTrips(db)
 		GetUnemploymentRates(db)
 		GetBuildingPermits(db)
 
+		port := os.Getenv("PORT")
+		if port == "" {
+			port = "8080"
+		}
+		log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 		// Pull the data once a day
 		// You might need to pull Taxi Trips and COVID data on daily basis
 		// but not the unemployment dataset becasue its dataset doesn't change every day
